@@ -1,0 +1,26 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "msg",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "data-download-tasks",
+      "connection": "personicle_STORAGE"
+    },
+    {
+      "type": "eventHub",
+      "name": "eventsTopic",
+      "eventHubName": "testhub-new",
+      "connection": "EventHubConnection",
+      "direction": "out"
+  },
+  {
+    "type": "queue",
+    "name": "datastreamTaskQueue",
+    "queueName": "google-fit-datastream-download-tasks",
+    "connection": "personicle_STORAGE",
+    "direction": "out"
+  }
+  ]
+}
