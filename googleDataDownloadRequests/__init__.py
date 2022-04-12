@@ -5,6 +5,7 @@ import azure.functions as func
 import requests
 import os
 from utils.google_fit_parsers import google_datastream_parser
+from producer.send_datastreams_to_azure import datastream_producer
 GOOGLE_FIT_DATA_SET = "https://www.googleapis.com/fitness/v1/users/me/dataSources/{dataSourceId}/datasets/{datasetId}"
 
 def main(msg: func.QueueMessage, datastreamTopic: func.Out[str], datastreamTaskQueue: func.Out[str]) -> None:
@@ -89,10 +90,11 @@ def main(msg: func.QueueMessage, datastreamTopic: func.Out[str], datastreamTaskQ
 
     # send data to write api
     try:
-        datastreamTopic.set(json.dumps(formatted_records))
+
+        # datastreamTopic.set(json.dumps(formatted_records))
         # datastream_topic.add(json.dumps(formatted_records))
         # send_data_response = requests.post(os.environ.get("DATASTREAM_WRITE_ENDPOINT"), params={}, data=formatted_records, headers={})
-        # datastream_producer(validated_records)
+        datastream_producer(formatted_records)
     except Exception as e:
         logging.info("Total data points added for source {}: {}".format(datasource, total_data_points))
         logging.error(traceback.format_exc())
@@ -103,7 +105,6 @@ def main(msg: func.QueueMessage, datastreamTopic: func.Out[str], datastreamTaskQ
     # get next page token
     next_page_token = dataset.get('nextPageToken', None)
     if next_page_token:
-        next_page = True
         logging.info("Next page token found")
         # if there is a next page token then generate another request
         datastreamTaskQueue.set(json.dumps({

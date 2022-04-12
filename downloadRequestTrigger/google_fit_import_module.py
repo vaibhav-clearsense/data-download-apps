@@ -84,7 +84,8 @@ def google_fit_dataset_import(personicle_user_id, access_token, last_accessed_at
     # sending requests for 10 days' worth of data at a time
     window_start = start_time
     while window_start < end_time:
-        window_end = int(min(end_time, window_start+timedelta(days=10).total_seconds()*1000000000))
+        # uncomment the second part of next line for sending data requests for fixed periods (e.g., 10 days)
+        window_end = end_time #int(min(end_time, window_start+timedelta(days=10).total_seconds()*1000000000))
         dataset_id = "{}-{}".format(window_start, window_end)
 
         for source in datasources_list:

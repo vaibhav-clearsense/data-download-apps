@@ -1,5 +1,4 @@
 import logging
-from logging.config import fileConfig
 import json
 import traceback
 from typing import List
@@ -14,6 +13,7 @@ def main(msg: func.QueueMessage, eventsTopic: func.Out[List[str]], datastreamTas
                     "last_accesed_at" : <timestamp for last successful data download request>}
     """
     request_message = json.loads(msg.get_body().decode('utf-8'))
+    logging.basicConfig(level=logging.WARNING, str='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
     logging.info('Python queue trigger function processed a queue item: %s',
                  request_message)
     try:

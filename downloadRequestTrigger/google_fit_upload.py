@@ -1,8 +1,13 @@
 import json
 import os
-import requests
+import traceback
 
 from .utils.google_fit_parsers import *
+from producer import send_records_azure
+
+from logging import getLogger
+
+LOG = getLogger(__name__)
 
 RECORD_PROCESSING = {
     'activity': google_activity_parser,
@@ -46,5 +51,10 @@ def send_records_to_personicle(personicle_user_id, records, stream_name, events_
     # request_endpoint = os.environ.get("EVENT_WRITE_ENDPOINT")
 
     # response = requests.post(request_endpoint, headers=request_headers, data=formatted_records)
-    events_topic.set(json.dumps(formatted_records))
-    return {"success": True, "number_of_records": count}
+    # events_topic.set(json.dumps(formatted_records))
+    try:
+        send_records_azure.send_records_to_eventhub(None, formatted_records, os.environ['EVENTS_EVENTHUB_NAME'])
+        return {"success": True, "number_of_records": count}
+    except Exception as e:
+        LOG.error(traceback.format_exc())
+        return {"success": False, "error": e}
