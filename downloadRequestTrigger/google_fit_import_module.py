@@ -22,9 +22,9 @@ def google_fit_sessions_import(personicle_user_id, access_token, last_accessed_a
     # google_fit_sleep_endpoint = GOOGLE_FIT_SESSIONS_ENDPOINT.format(activity_type=SLEEP_ACTIVITY)
     if last_accessed_at is None:
         start_time = None
-        end_time = str(datetime.utcnow())
+        end_time = datetime.utcnow()
     else:
-        start_time = last_accessed_at
+        start_time = datetime.strptime(last_accessed_at, "%Y-%m-%d %H:%M:%S%z")
         end_time = None
     count_sessions = 0
     repeat_token = None
@@ -34,9 +34,9 @@ def google_fit_sessions_import(personicle_user_id, access_token, last_accessed_a
         # end_time = start_time + SESSIONS_DATE_OFFSET
         query_parameters = {}
         if start_time:
-            query_parameters['startTime'] = start_time #.strftime("%Y-%m-%dT%H:%M:%S%zZ")
+            query_parameters['startTime'] = start_time.strftime("%Y-%m-%dT%H:%M:%S%zZ")
         if end_time:
-            query_parameters['endTime'] = end_time #.strftime("%Y-%m-%dT%H:%M:%S%zZ")
+            query_parameters['endTime'] = end_time.strftime("%Y-%m-%dT%H:%M:%S%zZ")
         if repeat_token:
             query_parameters['pageToken'] = repeat_token
 
