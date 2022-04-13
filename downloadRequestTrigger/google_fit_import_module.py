@@ -29,6 +29,7 @@ def google_fit_sessions_import(personicle_user_id, access_token, last_accessed_a
     count_sessions = 0
     repeat_token = None
     call_api = True
+    request_status = False
     while call_api:
         # end_time = start_time + SESSIONS_DATE_OFFSET
         query_parameters = {}
@@ -48,6 +49,10 @@ def google_fit_sessions_import(personicle_user_id, access_token, last_accessed_a
     
         activities_response = requests.get(GOOGLE_FIT_SESSIONS_ENDPOINT, headers=query_header, params=query_parameters)
         activities = json.loads(activities_response.content)
+        if 'session' not in activities:
+            LOG.error("Unexpected response from API")
+            LOG.error(json.dumps(activities, indent=2))
+            break
 
         LOG.info("Number of sessions: {}".format(len(activities['session'])))
         LOG.info("Received payload (first 5 events): {}".format(json.dumps(activities['session'][:min(5, len(activities['session']))], indent=2)))
@@ -55,6 +60,7 @@ def google_fit_sessions_import(personicle_user_id, access_token, last_accessed_a
         # SEND DATA TO KAFKA 
         if len(activities['session']) > 0:
             # provide request parameters and data
+            request_status=True
             send_response = google_fit_upload.send_records_to_personicle(personicle_user_id, activities['session'], 'activity', events_topic)
             LOG.info(send_response)
 
@@ -64,7 +70,7 @@ def google_fit_sessions_import(personicle_user_id, access_token, last_accessed_a
         # start_time = end_time
         count_sessions += len(activities['session'])
     LOG.info("Number of sessions sent : {}".format(count_sessions))
-    return True, count_sessions
+    return request_status, count_sessions
 
 def google_fit_dataset_import(personicle_user_id, access_token, last_accessed_at, datastream_queue):
     """
