@@ -24,7 +24,7 @@ def google_fit_sessions_import(personicle_user_id, access_token, last_accessed_a
         start_time = None
         end_time = datetime.utcnow()
     else:
-        start_time = datetime.strptime(last_accessed_at, "%Y-%m-%d %H:%M:%S%z")
+        start_time = datetime.strptime(last_accessed_at, "%Y-%m-%d %H:%M:%S.%f")
         end_time = None
     count_sessions = 0
     repeat_token = None

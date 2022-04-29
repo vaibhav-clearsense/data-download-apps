@@ -1,0 +1,18 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "mytimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 * * * * *"
+    },
+    {
+      "type": "queue",
+      "name": "datastreamTaskQueue",
+      "queueName": "data-download-tasks",
+      "connection": "personicle_STORAGE",
+      "direction": "out"
+    }
+  ]
+}
