@@ -161,8 +161,8 @@ def google_interval_datastream_parser(raw_records, stream_name, stream_info, per
     for point in data_points:
         return_message['dataPoints'].append({
             #"timestamp": str(datetime.fromtimestamp(int(point['endTimeNanos'])/10**9)),# point['endTimeNanos'],
-            "starttime": str(datetime.fromtimestamp(int(point['startTimeNanos']) / 10 ** 9))
-            "endtime": str(datetime.fromtimestamp(int(point['endTimeNanos']) / 10 ** 9))
+            "starttime": str(datetime.fromtimestamp(int(point['startTimeNanos']) / 10 ** 9)),
+            "endtime": str(datetime.fromtimestamp(int(point['endTimeNanos']) / 10 ** 9)),
             "value": _datapoint_formatter(point['value'][0], stream_info['ValueType'])
         })
     return return_message
