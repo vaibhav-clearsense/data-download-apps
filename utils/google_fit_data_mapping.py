@@ -1,3 +1,5 @@
+from google_fit_parsers import *
+
 # maps google fit data types to timescaledb tables
 # list all available google fit data types and map them to a personicle data type
 # this mapping will keep evolving with new and custom data types
@@ -159,6 +161,59 @@ DATA_DICTIONARY = {
 
     #Health data types
     "com.google.blood_glucose": "com.personicle.individual.datastreams.blood_glucose",
+    # "com.google.blood_pressure": "blood_pressure",
+    # "com.google.body.temperature": "body_temperature",
+    # "com.google.cervical_mucus": "cervical_mucus",
+    # "com.google.cervical_position": "cervical_position",
+    # "com.google.menstruation": "menstruation",
+    # "com.google.ovulation_test": "ovulation_test",
+    # "com.google.oxygen_saturation": "blood_oxygen_saturation",
+    # "com.google.vaginal_spotting": "vaginal_spotting"
+
+}
+
+########################
+
+
+DATASTREAM_PARSERMAPPING = {
+    # Activity data types
+    "com.google.calories.bmr": google_datastream_parser,
+    "com.google.calories.expended": google_datastream_parser,
+    "com.google.cycling.pedaling.cadence": google_datastream_parser,
+    "com.google.cycling.pedaling.cumulative": google_datastream_parser,
+    "com.google.heart_minutes": google_datastream_parser,
+    "com.google.active_minutes": google_datastream_parser,
+    "com.google.power.sample": google_datastream_parser,
+    "com.google.step_count.cadence": google_datastream_parser,
+    "com.google.step_count.delta": google_interval_datastream_parser,
+    "com.google.step_count.cumulative": google_datastream_parser,
+    # different exercise performed in a workout, should be stored as events in the personicle
+    # "com.google.activity.exercise": "personal_events",
+    # "com.google.activity.segment": "personal_events",
+
+    # Body data types
+    "com.google.body.fat.percentage": google_datastream_parser,
+    "com.google.heart_rate.bpm": google_datastream_parser,
+    "com.google.height": google_datastream_parser,
+    "com.google.weight": google_datastream_parser,
+
+    # Location data types
+    "com.google.cycling.wheel_revolution.rpm": google_datastream_parser,
+    "com.google.cycling.wheel_revolution.cumulative": google_datastream_parser,
+    "com.google.distance.delta": google_datastream_parser,
+    # "com.google.location.sample": "location",
+    "com.google.speed": google_datastream_parser,
+
+    # Nutrition data types
+    # "com.google.hydration": "water_intake",
+    # meal event from google fit
+    # "com.google.nutrition": "food_event"
+
+    # Sleep data types
+    "com.google.sleep.segment": google_datastream_parser,
+
+    #Health data types
+    "com.google.blood_glucose": google_datastream_parser,
     # "com.google.blood_pressure": "blood_pressure",
     # "com.google.body.temperature": "body_temperature",
     # "com.google.cervical_mucus": "cervical_mucus",

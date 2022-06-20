@@ -4,8 +4,9 @@ import traceback
 import azure.functions as func
 import requests
 import os
-from utils.google_fit_parsers import google_datastream_parser
+#from utils.google_fit_parsers import google_datastream_parser
 from producer.send_datastreams_to_azure import datastream_producer
+from utils.google_fit_data_mapping import DATASTREAM_PARSERMAPPING
 GOOGLE_FIT_DATA_SET = "https://www.googleapis.com/fitness/v1/users/me/dataSources/{dataSourceId}/datasets/{datasetId}"
 
 def main(msg: func.QueueMessage, datastreamTopic: func.Out[str], datastreamTaskQueue: func.Out[str]) -> None:
@@ -27,7 +28,7 @@ def main(msg: func.QueueMessage, datastreamTopic: func.Out[str], datastreamTaskQ
     dataset_id = request_message['dataset_id']
     personicle_data_type = request_message['personicle_data_type']
     personicle_user_id = request_message['personicle_user_id']
-
+    google_datatype= request_message.get('google_datatype',None)
     total_data_points=0
 
     query_header = {
@@ -75,7 +76,8 @@ def main(msg: func.QueueMessage, datastreamTopic: func.Out[str], datastreamTaskQ
         personicle_data_description = json.loads(stream_information.text)
 
         # format the records to match the avro schema
-        formatted_records = google_datastream_parser(dataset, personicle_data_type, personicle_data_description, personicle_user_id)
+        required_parser=DATASTREAM_PARSERMAPPING[google_datatype]
+        formatted_records = required_parser(dataset, personicle_data_type, personicle_data_description, personicle_user_id)
         logging.debug("Formatted records: {}".format(json.dumps(formatted_records, indent=2)))
         logging.info("Validating records against schema object: {}".format(json.dumps(personicle_data_description, indent=2)))
         # validate if the data points match the avro schema
