@@ -167,3 +167,88 @@ def google_interval_datastream_parser(raw_records, stream_name, stream_info, per
         })
     return return_message
 
+#####sleep data format
+
+#
+# def google_sleepdatastream_parser(raw_records, stream_name, stream_info, personicle_user_id):
+#     """
+#     Convert datasets received from google fit rest API to personicle data stream schema
+#     raw_event: Messags received from the google fit rest API, format shown below
+#     stream_name: personicle data type for the data stream
+#     personicle_user_id: id for the user in the personicle ecosystem
+#
+#     Input record format:
+#         {
+#  {
+#  "session": [
+#     {
+#      "id": "Sleep1575505620000",
+#      "name": "Sleep",
+#      "description": "",
+#      "startTimeMillis": "1575505620000",
+#      "endTimeMillis": "1575526800000",
+#      "modifiedTimeMillis": "1575590432413",
+#      "application": {
+#       "packageName": "com.example.sleep_tracker"
+#      },
+#      "activityType": 72  // Sleep
+#     },
+#     {
+#      "id": "Run2939075083",
+#      "name": "Mud",
+#      "description": "",
+#      "startTimeMillis": "1576594403000",
+#      "endTimeMillis": "1576598754000",
+#      "modifiedTimeMillis": "1576616010143",
+#      "application": {
+#       "packageName": "com.example.run_tracker"
+#      },
+#      "activityType": 8  // Running
+#     }
+#   ],
+#  "deletedSession": [],
+#  "nextPageToken": "1576598754001"
+# }
+#     Output record format:
+#         {
+#             "streamName":<personicle stream name>,
+#             "individual_id":<personicle individual id>,
+#             "source":<source application>,
+#             "confidence":<float 0-1, optional>,
+#             "unit":<string, optional>,
+#             "dataPoints": [
+#                 {
+#                     "timestamp":<timestamp of data point>,
+#                     "value": <data point value>
+#                 }
+#             ]
+#         }
+#     """
+#     return_message = {
+#         "streamName": stream_name,
+#         "individual_id": personicle_user_id,
+#         "source": "google-fit",
+#         "unit": stream_info['Unit'],
+#         "dataPoints": []
+#     }
+#
+#     LOG.info("Initial message template: {}".format(json.dumps(return_message, indent=2)))
+#     data_points = raw_records.get('point', [])
+#     if len(data_points) == 0:
+#         return None
+#
+#     for point in data_points:
+#         return_message['dataPoints'].append({
+#             #"timestamp": str(datetime.fromtimestamp(int(point['endTimeNanos'])/10**9)),# point['endTimeNanos'],
+#
+#             "starttime": str(datetime.fromtimestamp(int(point['startTimeNanos']) / 10 ** 9)),
+#             "endtime": str(datetime.fromtimestamp(int(point['endTimeNanos']) / 10 ** 9)),
+#             "value": _datapoint_formatter(point['value'][0], stream_info['ValueType']) #sleepstage
+#                "sleepstage": {"Unused", "Awake (during sleep)", "Sleep",
+#                            "Out-of-bed", "Light sleep", "Deep sleep",
+#                            "REM sleep"},
+#
+#         })
+#     return return_message
+#
+
