@@ -177,11 +177,11 @@ DATA_DICTIONARY = {
 
 DATASTREAM_PARSERMAPPING = {
     # Activity data types
-    "com.google.calories.bmr": google_datastream_parser, #inst
+    "com.google.calories.bmr": google_datastream_parser,
     "com.google.calories.expended": google_interval_datastream_parser,
     "com.google.cycling.pedaling.cadence": google_datastream_parser,
     "com.google.cycling.pedaling.cumulative": google_interval_datastream_parser,
-    "com.google.heart_minutes": google_interval_datastream_parser, #agg
+    "com.google.heart_minutes": google_interval_datastream_parser,
     "com.google.active_minutes": google_interval_datastream_parser,
     "com.google.power.sample": google_datastream_parser,
     "com.google.step_count.cadence": google_datastream_parser,
@@ -202,7 +202,7 @@ DATASTREAM_PARSERMAPPING = {
     "com.google.cycling.wheel_revolution.cumulative": google_interval_datastream_parser,
     "com.google.distance.delta": google_interval_datastream_parser,
     # "com.google.location.sample": "location",
-    "com.google.speed": google_datastream_parser, #agg
+    "com.google.speed": google_datastream_parser,
 
     # Nutrition data types
     # "com.google.hydration": "water_intake",
