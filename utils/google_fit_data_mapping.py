@@ -1,4 +1,4 @@
-from google_fit_parsers import *
+from .google_fit_parsers import *
 
 # maps google fit data types to timescaledb tables
 # list all available google fit data types and map them to a personicle data type
@@ -125,14 +125,14 @@ EVENTS_DICTIONARY = {
 DATA_DICTIONARY = {
     # Activity data types
     "com.google.calories.bmr": "com.personicle.individual.datastreams.resting_calories",
-    "com.google.calories.expended": "com.personicle.individual.datastreams.total_calories",
+    "com.google.calories.expended": "com.personicle.individual.datastreams.interval.total_calories",
     "com.google.cycling.pedaling.cadence": "com.personicle.individual.datastreams.cycling.cadence",
-    "com.google.cycling.pedaling.cumulative": "com.personicle.individual.datastreams.cycling.cumulative_cadence",
-    "com.google.heart_minutes": "com.personicle.individual.datastreams.heart_intensity_minutes",
-    "com.google.active_minutes": "com.personicle.individual.datastreams.active_minutes",
+    "com.google.cycling.pedaling.cumulative": "com.personicle.individual.datastreams.interval.cycling.cumulative_cadence",
+    "com.google.heart_minutes": "com.personicle.individual.datastreams.interval.heart_intensity_minutes",
+    "com.google.active_minutes": "com.personicle.individual.datastreams.interval.active_minutes",
     "com.google.power.sample": "com.personicle.individual.datastreams.cycling.power",
     "com.google.step_count.cadence": "com.personicle.individual.datastreams.step.cadence",
-    "com.google.step_count.delta": "com.personicle.individual.datastreams.step.count",
+    "com.google.step_count.delta": "com.personicle.individual.datastreams.interval.step.count",
     "com.google.step_count.cumulative": "com.personicle.individual.datastreams.step.cumulative",
     # different exercise performed in a workout, should be stored as events in the personicle
     # "com.google.activity.exercise": "personal_events",
@@ -146,8 +146,8 @@ DATA_DICTIONARY = {
 
     # Location data types
     "com.google.cycling.wheel_revolution.rpm": "com.personicle.individual.datastreams.cycling.cadence",
-    "com.google.cycling.wheel_revolution.cumulative": "com.personicle.individual.datastreams.cycling.cumulative_cadence",
-    "com.google.distance.delta": "com.personicle.individual.datastreams.distance",
+    "com.google.cycling.wheel_revolution.cumulative": "com.personicle.individual.datastreams.interval.cycling.cumulative_cadence",
+    "com.google.distance.delta": "com.personicle.individual.datastreams.interval.distance",
     # "com.google.location.sample": "location",
     "com.google.speed": "com.personicle.individual.datastreams.speed",
 

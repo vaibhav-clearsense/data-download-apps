@@ -7,8 +7,8 @@ import time
 import logging
 from . import google_fit_upload
 
-from .utils.google_fit_datasets import get_data_sources, get_dataset_for_datasource
-from .utils.google_fit_data_mapping import DATA_DICTIONARY
+from utils.google_fit_datasets import get_data_sources, get_dataset_for_datasource
+from utils.google_fit_data_mapping import DATA_DICTIONARY
 
 LOG = logging.getLogger(__name__)
 SLEEP_ACTIVITY = 72
@@ -117,7 +117,8 @@ def google_fit_dataset_import(personicle_user_id, access_token, last_accessed_at
                 "datasource": dataset_name,
                 "dataset_id": dataset_id,
                 "personicle_data_type": personicle_mapping,
-                "personicle_user_id": personicle_user_id
+                "personicle_user_id": personicle_user_id,
+                "google_datatype": data_type
             }))
             resp[personicle_mapping] = True
             # number_of_datapoints_added = get_dataset_for_datasource(access_token, dataset_name, dataset_id, personicle_mapping, personicle_user_id, datastream_topic)

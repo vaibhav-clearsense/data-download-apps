@@ -77,6 +77,7 @@ def main(msg: func.QueueMessage, datastreamTopic: func.Out[str], datastreamTaskQ
 
         # format the records to match the avro schema
         required_parser=DATASTREAM_PARSERMAPPING[google_datatype]
+        logging.info("Parser for type {}: {}".format(google_datatype, required_parser))
         formatted_records = required_parser(dataset, personicle_data_type, personicle_data_description, personicle_user_id)
         logging.debug("Formatted records: {}".format(json.dumps(formatted_records, indent=2)))
         logging.info("Validating records against schema object: {}".format(json.dumps(personicle_data_description, indent=2)))
