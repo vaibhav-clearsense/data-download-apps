@@ -85,6 +85,7 @@ def google_fit_dataset_import(personicle_user_id, access_token, last_accessed_at
         end_time = time.time_ns()
         start_time = int(end_time - timedelta(days=365).total_seconds()*1000000000)
     else:
+        last_accessed_at = datetime.strptime(last_accessed_at, "%Y-%m-%d %H:%M:%S.%f")
         start_time = int(last_accessed_at.timestamp())*1000000000 + 1
         end_time = time.time_ns()
     # sending requests for 10 days' worth of data at a time
