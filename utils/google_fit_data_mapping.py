@@ -25,100 +25,100 @@ EVENTS_DICTIONARY = {
 	113: "com.personicle.individual.events.exercise.Crossfit",
 	106: "com.personicle.individual.events.exercise.Curling",
 	24: "com.personicle.individual.events.Dancing",
-	102: "com.personicle.individual.events.Diving"
-# Elevator	117
-# Elliptical	25
-# Ergometer	103
-# Escalator	118
-# Fencing	26
-# Football (American)	27
-# Football (Australian)	28
-# Football (Soccer)	29
-# Frisbee	30
-# Gardening	31
-# Golf	32
-# Guided Breathing	122
-# Gymnastics	33
-# Handball	34
-# HIIT	114
-# Hiking	35
-# Hockey	36
-# Horseback riding	37
-# Housework	38
-# Ice skating	104
-# In vehicle	0
-# Interval Training	115
-# Jumping rope	39
-# Kayaking	40
-# Kettlebell training	41
-# Kickboxing	42
-# Kitesurfing	43
-# Martial arts	44
-# Meditation	45
-# Mixed martial arts	46
-# Other (unclassified fitness activity)	108
-# P90X exercises	47
-# Paragliding	48
-# Pilates	49
-# Polo	50
-# Racquetball	51
-# Rock climbing	52
-# Rowing	53
-# Rowing machine	54
-# Rugby	55
-# Running	8
-# Jogging	56
-# Running on sand	57
-# Running (treadmill)	58
-# Sailing	59
-# Scuba diving	60
-# Skateboarding	61
-# Skating	62
-# Cross skating	63
-# Indoor skating	105
-# Inline skating (rollerblading)	64
-# Skiing	65
-# Back-country skiing	66
-# Cross-country skiing	67
-# Downhill skiing	68
-# Kite skiing	69
-# Roller skiing	70
-# Sledding	71
-# Snowboarding	73
-# Snowmobile	74
-# Snowshoeing	75
-# Softball	120
-# Squash	76
-# Stair climbing	77
-# Stair-climbing machine	78
-# Stand-up paddleboarding	79
-# Still (not moving)	3
-# Strength training	80
-# Surfing	81
-# Swimming	82
-# Swimming (open water)	84
-# Swimming (swimming pool)	83
-# Table tennis (ping pong)	85
-# Team sports	86
-# Tennis	87
-# Tilting (sudden device gravity change)	5
-# Treadmill (walking or running)	88
-# Unknown (unable to detect activity)	4
-# Volleyball	89
-# Volleyball (beach)	90
-# Volleyball (indoor)	91
-# Wakeboarding	92
-# Walking	7
-# Walking (fitness)	93
-# Nording walking	94
-# Walking (treadmill)	95
-# Walking (stroller)	116
-# Waterpolo	96
-# Weightlifting	97
-# Wheelchair	98
-# Windsurfing	99
-# Yoga	100
-# Zumba	101
+	102: "com.personicle.individual.events.Diving",
+	8: "com.personicle.individual.events.Running",
+	72: "com.personicle.individual.events.Sleep",
+	53: "com.personicle.individual.events.Rowing",
+	54: "com.personicle.individual.events.RowingMachine",
+    117: "com.personicle.individual.events.Elevator",
+    25: "com.personicle.individual.events.Elliptical",
+    103: "com.personicle.individual.events.Erogometer",
+    118: "com.personicle.individual.events.Escalator",
+    26: "com.personicle.individual.events.Fencing",
+    27: "com.personicle.individual.events.FootBallAmerican",
+    28: "com.personicle.individual.events.FootballAustralian",
+    29: "com.personicle.individual.events.FootballSoccer",
+    30: "com.personicle.individual.events.Frisbee",
+    31: "com.personicle.individual.events.Gardening",
+    32: "com.personicle.individual.events.Golf",
+    122: "com.personicle.individual.events.GuidedBreathing",
+    33: "com.personicle.individual.events.Gymnastics",
+    34: "com.personicle.individual.events.Handball",
+    114: "com.personicle.individual.events.HIIT",
+    35: "com.personicle.individual.events.Hiking",
+    36: "com.personicle.individual.events.Hockey",
+    37: "com.personicle.individual.events.HorsebackRiding",
+    38: "com.personicle.individual.events.Housework",
+    104: "com.personicle.individual.events.IceSkating",
+    0: "com.personicle.individual.events.InVehicle",
+    115: "com.personicle.individual.events.IntervalTraining",
+    39: "com.personicle.individual.events.JumpingRope",
+    40: "com.personicle.individual.events.Kayaking",
+    41: "com.personicle.individual.events.KettlebellTraining",
+    42: "com.personicle.individual.events.Kickboxing",
+    43: "com.personicle.individual.events.Kitesurfing",
+    44: "com.personicle.individual.events.MartialArts",
+    45: "com.personicle.individual.events.Meditatation",
+    46: "com.personicle.individual.events.MixedMartialArts",
+    108: "com.personicle.individual.events.other",
+    47: "com.personicle.individual.events.P90X",
+    48: "com.personicle.individual.events.Paragliding",
+    49: "com.personicle.individual.events.Pilates",
+    50: "com.personicle.individual.events.Polo",
+    51: "com.personicle.individual.events.Racquetball",
+    52: "com.personicle.individual.events.other",
+    55: "com.personicle.individual.events.Rugby",
+    56: "com.personicle.individual.events.Jogging",
+    57: "com.personicle.individual.events.RunningOnSand",
+    58: "com.personicle.individual.events.RunningTreadmill",
+    59: "com.personicle.individual.events.Sailing",
+    60: "com.personicle.individual.events.ScubaDiving",
+    61: "com.personicle.individual.events.Skateboarding",
+    62: "com.personicle.individual.events.Skating",
+    63: "com.personicle.individual.events.CrossSkating",
+    105: "com.personicle.individual.events.IndoorSkating",
+    64: "com.personicle.individual.events.InlineSkating",
+    65: "com.personicle.individual.events.Skiing",
+    66: "com.personicle.individual.events.BackCountrySkiing",
+    67: "com.personicle.individual.events.CrossCountrySkiing",
+    68: "com.personicle.individual.events.DownhillSkiing",
+    69: "com.personicle.individual.events.KiteSkiing",
+    70: "com.personicle.individual.events.RollerSkiing",
+    71: "com.personicle.individual.events.Sledding",
+    73: "com.personicle.individual.events.Snowboarding",
+    74: "com.personicle.individual.events.Snowmobile",
+    75: "com.personicle.individual.events.Snowshoeing",
+    120: "com.personicle.individual.events.Softball",
+    76: "com.personicle.individual.events.Squash",
+    77: "com.personicle.individual.events.StairClimbing",
+    78: "com.personicle.individual.events.StairClimbingMachine",
+    79: "com.personicle.individual.events.StandupPaddleboarding",
+    80: "com.personicle.individual.events.StrengthTraining",
+    81: "com.personicle.individual.events.Surfing",
+    82: "com.personicle.individual.events.Swimming",
+    83: "com.personicle.individual.events.SwimmingPool",
+    84: "com.personicle.individual.events.SwimmingOpenWater",
+    85: "com.personicle.individual.events.TableTennis",
+    86: "com.personicle.individual.events.TeamSports",
+    87: "com.personicle.individual.events.Tennis",
+    5: "com.personicle.individual.events.Tilting",
+    88: "com.personicle.individual.events.Treadmill",
+    4: "com.personicle.individual.events.Unknown",
+    89: "com.personicle.individual.events.Volleyball",
+    90: "com.personicle.individual.events.VolleyballBeach",
+    91: "com.personicle.individual.events.VolleyballIndoor",
+    92: "com.personicle.individual.events.Wakeboarding",
+    7: "com.personicle.individual.events.Walking",
+    93: "com.personicle.individual.events.WalkingFitness",
+    94: "com.personicle.individual.events.NordicWalking",
+    95: "com.personicle.individual.events.WalkingTreadmill",
+    96: "com.personicle.individual.events.Waterpolo",
+    97: "com.personicle.individual.events.Weightlifting",
+    116: "com.personicle.individual.events.WalkingStroller",
+    98: "com.personicle.individual.events.Wheelchair",
+    99: "com.personicle.individual.events.Windsurfing",
+    100: "com.personicle.individual.events.Yoga",
+    101: "com.personicle.individual.events.Zumba",
 }
 
 

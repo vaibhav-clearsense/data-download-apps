@@ -2,7 +2,7 @@ from datetime import datetime
 # import pytz
 import json
 import logging
-# from utils.google_fit_data_mapping import EVENTS_DICTIONARY
+from utils.google_fit_data_mapping import EVENTS_DICTIONARY
 
 LOG = logging.getLogger(__name__)
 
@@ -20,9 +20,19 @@ def google_activity_parser(raw_event, personicle_user_id):
     duration = int(raw_event['endTimeMillis']) - int(raw_event['startTimeMillis'])
     new_event_record['end_time'] = str(datetime.utcfromtimestamp(int(raw_event['endTimeMillis'])/1000.0))
 
-    new_event_record['event_name'] = raw_event['name']# EVENTS_DICTIONARY.get(raw_event['activityType'], "com.personicle.individual.event.unknown")
+    
+    new_event_record['event_type'] = EVENTS_DICTIONARY.get(raw_event['activityType'], "com.personicle.individual.event.unknown")
+    new_event_record['event_name'] = raw_event['name']
     new_event_record['source'] = 'google-fit'
+    # create a  dictionary to map event_name with its standard unit
+    # example: weight:lb, distance:meters, height: cms, 
     new_event_record['parameters'] = json.dumps({
+        # "duration": {
+        #     "value": duration,
+        #     "unit": "ms",
+        #      "multiplier": 1,
+        #      "standardUnit": "seconds"
+        # },
         "duration": duration,
         "source_device": raw_event['application']
     })
