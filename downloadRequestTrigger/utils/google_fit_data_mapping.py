@@ -23,7 +23,10 @@ EVENTS_DICTIONARY = {
 	113: "com.personicle.individual.events.exercise.Crossfit",
 	106: "com.personicle.individual.events.exercise.Curling",
 	24: "com.personicle.individual.events.Dancing",
-	102: "com.personicle.individual.events.Diving"
+	102: "com.personicle.individual.events.Diving",
+    8: "com.personicle.individual.events.Running",
+    72: "com.personicle.individual.events.Sleep"
+
 # Elevator	117
 # Elliptical	25
 # Ergometer	103
