@@ -19,8 +19,8 @@ def google_activity_parser(raw_event, personicle_user_id):
     new_event_record['start_time'] = str(datetime.utcfromtimestamp(int(raw_event['startTimeMillis'])/1000.0))
     duration = int(raw_event['endTimeMillis']) - int(raw_event['startTimeMillis'])
     new_event_record['end_time'] = str(datetime.utcfromtimestamp(int(raw_event['endTimeMillis'])/1000.0))
-
-    
+    print("raw_event")
+    print(raw_event)
     new_event_record['event_type'] = EVENTS_DICTIONARY.get(raw_event['activityType'], "com.personicle.individual.event.unknown")
     new_event_record['event_name'] = raw_event['name']
     new_event_record['source'] = 'google-fit'

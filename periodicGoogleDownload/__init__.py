@@ -48,10 +48,8 @@ async def main(mytimer: func.TimerRequest, datastreamTaskQueue: func.Out[List[st
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    # query = select(users).where( (users.c.last_accessed_at < (datetime.datetime.utcnow() - datetime.timedelta(hours=1) ) ) | (users.c.last_accessed_at == None )).where(users.c.service == 'google-fit')
-    query = select(users).where( (users.c.last_accessed_at < (datetime.datetime.utcnow() - datetime.timedelta(hours=1) ) ) | (users.c.last_accessed_at == None ))
-
-
+    # query = select(users).where( (users.c.last_accessed_at < (datetime.datetime.utcnow() - datetime.timedelta(hours=1) ) ) | (users.c.last_accessed_at == None ))
+    query = select(users).where( (users.c.last_accessed_at < (datetime.datetime.utcnow() - datetime.timedelta(hours=1) ) ) | (users.c.last_accessed_at == None )).where(users.c.userId == '00u50rvywd8mGuJw75d7')
     rows = await database.fetch_all(query)
    
     fetch_data_for = []
@@ -180,5 +178,5 @@ async def refresh_google_fit_token(user_object, last_accessed_at):
     else:
             update_status_query = users.update().where(users.c.userId == str(user_object['individual_id'])).values(status='expired')
             result = await database.execute(update_status_query)
-            logging.info('Error: ' + response.json()['error'])
+            # logging.info('Error: ' + response.json()['error'])
             return False

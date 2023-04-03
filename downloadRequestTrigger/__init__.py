@@ -4,7 +4,7 @@ import traceback
 from typing import List
 import azure.functions as func
 
-from downloadRequestTrigger.fitbit_import_module import fitbit_activity_import
+from downloadRequestTrigger.fitbit_import_module import fitbit_activity_import, fitbit_sleep_import
 from .google_fit_import_module import google_fit_sessions_import, google_fit_dataset_import, google_fit_sleep_stages
 
 
@@ -36,7 +36,9 @@ def main(msg: func.QueueMessage, eventsTopic: func.Out[List[str]], datastreamTas
             print("fitbit event download request trigger")
             print(request_message)
             fitbit_activity_response  = fitbit_activity_import(request_message["individual_id"], 
-                request_message["service_access_token"], request_message['last_accessed_at'], request_message['fitbit_user_id'],eventsTopic)
+                request_message["service_access_token"], request_message['last_accessed_at'], request_message['fitbit_user_id'])
+            fitbit_sleep_response = fitbit_sleep_import(request_message["individual_id"], 
+                request_message["service_access_token"], request_message['last_accessed_at'], request_message['fitbit_user_id'])
             logging.info("Processed fitbit activity request")
 
 

@@ -42,11 +42,16 @@ def fitbit_sleep_parser(raw_event, personicle_user_id):
     epoch = datetime.utcfromtimestamp(0).replace(tzinfo=None)
     new_event_record['individual_id'] = personicle_user_id
     # timestamp format 2021-11-25T09:27:30.000-08:00
-    new_event_record['start_time'] = int((datetime.strptime(raw_event['startTime'], "%Y-%m-%dT%H:%M:%S.%f%z").astimezone(pytz.utc).replace(tzinfo=None)-epoch).total_seconds()*1000)
+    start_time = datetime.strptime(raw_event['startTime'], "%Y-%m-%dT%H:%M:%S.%f").astimezone(pytz.utc).replace(tzinfo=None)
+    new_event_record['start_time'] = str(start_time)
+    new_event_record['end_time'] = str(datetime.strptime(raw_event['endTime'], "%Y-%m-%dT%H:%M:%S.%f").astimezone(pytz.utc).replace(tzinfo=None))
+    # new_event_record['start_time'] = int((datetime.strptime(raw_event['startTime'], "%Y-%m-%dT%H:%M:%S.%f").astimezone(pytz.utc).replace(tzinfo=None)-epoch).total_seconds()*1000)
     duration = timedelta(seconds=raw_event['duration']/1000)
-    new_event_record['end_time'] = int(new_event_record['start_time'] + duration.total_seconds()*1000)
+    # new_event_record['end_time'] = int(new_event_record['start_time'] + duration.total_seconds()*1000)
 
     new_event_record['event_name'] = "sleep"
+    new_event_record['event_type'] = "org.personicle.individual.events.sleep"
+
     new_event_record['source'] = 'fitbit'
     new_event_record['parameters'] = json.dumps({
         "duration": duration.total_seconds(),
@@ -74,9 +79,15 @@ def fitbit_sleep_stages_parser(raw_events, personicle_user_id):
     for stage_event in raw_events:
         new_stage_event = {}
         new_stage_event['individual_id'] = personicle_user_id
-        new_stage_event['start_time'] = int((datetime.strptime(stage_event['datetime'], "%Y-%m-%dT%H:%M:%S.%f%z").astimezone(pytz.utc).replace(tzinfo=None)-epoch).total_seconds()*1000)
-        new_stage_event['end_time'] = new_stage_event['start_time'] + stage_event['seconds']*1000
-        new_stage_event['event_name'] = "sleep.stages.{}".format(stage_event['level'])
+        start_time = datetime.strptime(stage_event['dateTime'], "%Y-%m-%dT%H:%M:%S.%f").astimezone(pytz.utc).replace(tzinfo=None)
+        end_time = start_time + timedelta(seconds=stage_event['seconds'])
+        # new_stage_event['start_time'] = int((datetime.strptime(stage_event['dateTime'], "%Y-%m-%dT%H:%M:%S.%f").astimezone(pytz.utc).replace(tzinfo=None)-epoch).total_seconds()*1000)
+        new_stage_event['start_time'] = str(start_time)
+        new_stage_event['end_time'] = str(end_time)
+        # new_stage_event['end_time'] = new_stage_event['start_time'] + stage_event['seconds']*1000
+        new_stage_event['event_name'] = stage_event['level']
+        new_stage_event['event_type'] = "org.personicle.individual.events.sleep.{}".format(stage_event['level'])
+
         new_stage_event['source'] = "fitbit"
         new_stage_event['parameters'] = json.dumps({
             'duration': stage_event['seconds'],
