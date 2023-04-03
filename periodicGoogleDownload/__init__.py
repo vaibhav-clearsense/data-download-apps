@@ -49,7 +49,7 @@ async def main(mytimer: func.TimerRequest, datastreamTaskQueue: func.Out[List[st
         tzinfo=datetime.timezone.utc).isoformat()
 
     # query = select(users).where( (users.c.last_accessed_at < (datetime.datetime.utcnow() - datetime.timedelta(hours=1) ) ) | (users.c.last_accessed_at == None ))
-    query = select(users).where( (users.c.last_accessed_at < (datetime.datetime.utcnow() - datetime.timedelta(hours=1) ) ) | (users.c.last_accessed_at == None )).where(users.c.userId == '00u50rvywd8mGuJw75d7')
+    query = select(users).where( (users.c.last_accessed_at < (datetime.datetime.utcnow() - datetime.timedelta(hours=1) ) ) | (users.c.last_accessed_at == None ))
     rows = await database.fetch_all(query)
    
     fetch_data_for = []
